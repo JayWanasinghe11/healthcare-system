@@ -1,38 +1,548 @@
-.App {
-  text-align: center;
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Healthcare Enhanced Blue Color Palette */
+  --bg-main: #f0f7ff;          /* Soft, clinical blue-tinted white */
+  --bg-sidebar: linear-gradient(180deg, #0f172a 0%, #1e3a8a 100%); /* Deep Royal Blue Professional Gradient */
+  --card-bg: #ffffff;
+  --primary: #2563eb;         /* Royal Blue / Active Medical Blue */
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;   /* Soft blue highlight tint */
+  --accent-blue-glow: rgba(37, 99, 235, 0.15);
+  --accent-success: #10b981;  /* Healthy Green */
+  --accent-warning: #f59e0b;  /* Patient Alert Yellow */
+  --text-main: #1e293b;       /* Deep slate for readability */
+  --text-muted: #64748b;      /* Soft gray for subtext */
+  --border-color: #dbeafe;    /* Soft blue border lines */
+  --shadow-sm: 0 2px 8px rgba(37, 99, 235, 0.04);
+  --shadow-md: 0 12px 30px -10px rgba(37, 99, 235, 0.12);
+  --anim-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-main);
   min-height: 100vh;
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dashboard Layout Structure */
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  flex: 1;
+  padding: 40px;
   display: flex;
   flex-direction: column;
+  gap: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Premium Healthcare Card Style */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  transition: var(--anim-smooth);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+/* Stats Layout */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* Chart Container */
+.chart-container {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+h3, h4 {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h2 {
+  margin-top: 8px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e3a8a; /* Medical Deep Blue Title */
+}
+
+/* Medical/Clinic Tables */
+.activity-table, .inventory-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+}
+
+.activity-table th, .inventory-table th {
+  padding: 16px;
+  text-align: left;
+  color: #1e40af; /* Blue text for table headers */
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: #eff6ff; /* Light blue table header background */
+  border-bottom: 2px solid var(--border-color);
+}
+
+.activity-table th:first-child, .inventory-table th:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.activity-table th:last-child, .inventory-table th:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.activity-table td, .inventory-table td {
+  padding: 18px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.inventory-table tr:hover td, .activity-table tr:hover td {
+  background: #f0fdf4; /* Light green highlight on hover for positive feel */
+  color: #166534;
+}
+
+.inventory-container {
+  background: var(--card-bg);
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  margin-top: 24px;
+}
+
+/* Professional Deep Blue Sidebar */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: var(--bg-sidebar);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  padding: 32px 20px;
+  position: sticky;
+  top: 0;
+  box-shadow: 4px 0 25px rgba(15, 23, 42, 0.15);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  color: #93c5fd; /* Soft light blue for unselected items */
+  text-decoration: none;
+  border-radius: 12px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  transition: var(--anim-smooth);
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.menu-item.active {
+  background: #3b82f6; /* Electric Blue for Active state */
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.user-profile {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* Medical Form Controls */
+.form-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--anim-smooth);
+}
+
+.input-field:focus {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--accent-blue-glow);
+}
+
+label {
+  color: #1e40af; /* Deep Blue Labels */
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+/* Accessible Action Buttons */
+.login-btn, .add-btn, .auth-btn {
+  font-family: inherit;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--anim-smooth);
+  border: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.login-btn, .auth-btn {
+  background: var(--primary);
+  color: white;
+  width: 100%;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.login-btn:hover, .auth-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.add-btn {
+  background: #1e3a8a; /* Deep Blue Add Button */
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.add-btn:hover {
+  background: #1e40af;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Trustworthy Auth Split Screen */
+.auth-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 0%, #dbeafe 0%, #f0f7ff 100%);
+  padding: 20px;
 }
+
+.auth-container {
+  display: flex;
+  width: 1000px;
+  height: 600px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.auth-art {
+  flex: 1.2;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85), rgba(37, 99, 235, 0.4)), 
+              url('https://cdn.prod.website-files.com/628a2ccc8b652b7dd1617d66/62e794a91834ac7c545347fe_shutterstock_1022274595.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px;
+  color: white;
+}
+
+.auth-art h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+}
+
+.auth-form {
+  flex: 1;
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #ffffff;
+}
+
+/* Clean Fallback Standalone Login */
+.login-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 48px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  width: 380px;
+  margin: 120px auto;
+  text-align: center;
+}
+
+.card {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.recharts-cartesian-axis-tick-value {
+  font-size: 0.75rem;
+  fill: var(--text-muted);
+}
+
+
+.login-container h1, 
+.login-container h2, 
+.login-container h3, 
+.login-container p,
+.auth-form h1,
+.auth-form h2,
+.auth-form h3,
+.auth-form p {
+  color: #1e3a8a !important; /* Deep Healthcare Blue Text */
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+
+.login-container a, 
+.login-container .register-link,
+.auth-form a,
+.auth-form .register-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-container a:hover,
+.auth-form a:hover {
+  text-decoration: underline;
+  color: #1d4ed8;
+}
+
+
+.dashboard-container,
+[class*="report"] {
+  color: var(--text-main) !important;
+}
+
+
+[class*="report"] td,
+[class*="report"] span,
+[class*="report"] div,
+.dashboard-container table td,
+.dashboard-container table span {
+  color: #1e293b !important; /* Deep Slate Blue */
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+
+[class*="report"] a,
+.dashboard-container table a {
+  color: #2563eb !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+[class*="report"] a:hover,
+.dashboard-container table a:hover {
+  text-decoration: underline;
+  color: #1d4ed8 !important;
+}
+
+.glass-card div,
+.glass-card p,
+.glass-card li,
+.glass-card {
+  color: #1e293b !important; /* Deep Slate Blue */
+}
+
+
+.glass-card a {
+  color: #2563eb !important;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.glass-card a:hover {
+  text-decoration: underline !important;
+  color: #1d4ed8 !important;
+}
+
+.glass-card * {
+  color: #1e293b !important;
+  -webkit-text-fill-color: #1e293b !important;
+}
+
+
+.glass-card *[class*="status"],
+.glass-card *[class*="success"],
+.glass-card span:has(text:contains("Completed")) {
+  color: #10b981 !important;
+}
+
+
+.glass-card a, .glass-card a * {
+  color: #2563eb !important;
+}
+
+.recharts-default-tooltip,
+.recharts-tooltip-wrapper,
+[class*="chart-tooltip"],
+[class*="recharts-tooltip"] {
+  background-color: transparent !important; 
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+
+.recharts-default-tooltip *,
+.recharts-tooltip-wrapper *,
+[class*="chart-tooltip"] *,
+[class*="recharts-tooltip"] * {
+  color: #1e3a8a !important; /* Deep Healthcare Blue */
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 700 !important; 
+  text-shadow: 0 0 4px #ffffff; 
+}
+.hero-banner { background: linear-gradient(135deg, #007bff, #00d4ff); padding: 20px; border-radius: 15px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.appointment-card { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.doctor-card { background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.doctor-img { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; }
+.btn-book { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 10px; margin-top: 10px; cursor: pointer; }
+.doctor-container { padding: 20px; max-width: 1000px; margin: auto; }
+.doctor-card { background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 25px; }
+.input-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px; }
+.input-field { padding: 12px; border: 1px solid #ddd; border-radius: 8px; width: 100%; box-sizing: border-box; }
+.add-btn { background: #1e293b; color: white; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer; transition: 0.3s; }
+.add-btn:hover { background: #334155; }
+.table-custom { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.table-custom th, .table-custom td { padding: 15px; border-bottom: 1px solid #f1f5f9; text-align: left; }
+.table-custom th { color: #64748b; font-size: 0.9rem; }
+/* Hero Banner Styles */
+.hero-banner {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 20px rgba(0, 114, 255, 0.3);
+}
+
+.hero-banner h2 { font-size: 2rem; margin-bottom: 10px; }
+.hero-banner p { font-size: 1.1rem; opacity: 0.9; }
+
+/* Doctor Button */
+.consult-btn {
+  background: white;
+  color: #0072ff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: transform 0.2s;
+}
+.consult-btn:hover { transform: scale(1.05); }
+/* Table Styles */
+.table-custom {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  margin-top: 20px;
+}
+
+.table-custom th {
+  text-align: left;
+  padding: 15px;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.table-custom td {
+  padding: 15px;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.table-custom tr td:first-child { border-left: 1px solid #f1f5f9; border-radius: 10px 0 0 10px; }
+.table-custom tr td:last-child { border-right: 1px solid #f1f5f9; border-radius: 0 10px 10px 0; }
+
+/* Buttons */
+.btn-action {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.btn-edit { background: #e0f2fe; color: #0284c7; margin-right: 8px; }
+.btn-edit:hover { background: #0284c7; color: white; }
+.btn-delete { background: #fee2e2; color: #dc2626; }
+.btn-delete:hover { background: #dc2626; color: white; }
